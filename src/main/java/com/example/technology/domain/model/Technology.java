@@ -21,4 +21,15 @@ public class Technology {
     public static final Integer MAX_LENGTH_NAME = 50;
     public static final Integer MAX_LENGTH_DESCRIPTION = 90;
 
+    public void checkNameLength() {
+        if (name == null || name.isBlank() || name.length() > MAX_LENGTH_NAME) {
+            throw TechnologyFieldInvalidLengthException.name();
+        }
+    }
+
+    public void checkDescriptionLength() {
+        if (description == null || description.isBlank() || description.length() > MAX_LENGTH_DESCRIPTION) {
+            throw TechnologyFieldInvalidLengthException.description();
+        }
+    }
 }
