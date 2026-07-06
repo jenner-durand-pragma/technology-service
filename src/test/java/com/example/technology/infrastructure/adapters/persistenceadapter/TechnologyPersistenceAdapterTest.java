@@ -1,14 +1,12 @@
 package com.example.technology.infrastructure.adapters.persistenceadapter;
 
 import com.example.technology.domain.model.Technology;
-import com.example.technology.infrastructure.adapters.persistenceadapter.entity.TechnologyEntity;
 import com.example.technology.infrastructure.adapters.persistenceadapter.mapper.ITechnologyEntityMapper;
 import com.example.technology.infrastructure.adapters.persistenceadapter.repository.ITechnologyEntityRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mapstruct.factory.Mappers;
 import org.mockito.Spy;
@@ -58,7 +56,7 @@ class TechnologyPersistenceAdapterTest {
             name = "Should return the boolean value if technology name exists or doesn't exists"
     )
     @ValueSource(booleans = {true, false})
-    void shouldReturnBooleanValueIfTechnologyExistsOrDoesntExists(Boolean value) {
+    void shouldReturnBooleanValueIfTechnologyExistsOrDoesntExists_ExistsByName(Boolean value) {
         var name = Boolean.TRUE.equals(value) ? technology.getName() : "Another value";
 
         technologyEntityRepository.save(technologyEntityMapper.toEntity(technology)).block();
