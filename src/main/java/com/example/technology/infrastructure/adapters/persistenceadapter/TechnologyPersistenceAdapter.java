@@ -15,11 +15,15 @@ public class TechnologyPersistenceAdapter implements ITechnologyPersistencePort 
 
     @Override
     public Mono<Technology> save(Technology technology) {
-        return Mono.empty();
+        return Mono.just(technology)
+                .map(technologyEntityMapper::toEntity)
+                .flatMap(technologyEntityRepository::save)
+                .map(technologyEntityMapper::toModel);
     }
 
     @Override
     public Mono<Boolean> existsByName(String name) {
-        return Mono.empty();
+        return Mono.just(name)
+                .flatMap(technologyEntityRepository::existsByName);
     }
 }
