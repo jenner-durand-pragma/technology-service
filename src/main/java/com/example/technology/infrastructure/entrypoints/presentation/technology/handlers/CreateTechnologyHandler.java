@@ -1,7 +1,6 @@
 package com.example.technology.infrastructure.entrypoints.presentation.technology.handlers;
 
 import com.example.technology.domain.api.ITechnologyServicePort;
-import com.example.technology.domain.exceptions.BusinessRuleException;
 import com.example.technology.infrastructure.entrypoints.dto.common.ErrorResponseDTO;
 import com.example.technology.infrastructure.entrypoints.dto.technology.CreateTechnologyDto;
 import com.example.technology.infrastructure.entrypoints.dto.technology.TechnologyDto;

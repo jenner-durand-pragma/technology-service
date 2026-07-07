@@ -1,15 +1,9 @@
 package com.example.technology.infrastructure.entrypoints.presentation.capacitytechnology.handlers;
 
 import com.example.technology.domain.api.ICapacityTechnologyServicePort;
-import com.example.technology.domain.api.ITechnologyServicePort;
 import com.example.technology.domain.model.CapacityTechnology;
-import com.example.technology.domain.model.Technology;
 import com.example.technology.infrastructure.entrypoints.dto.capacitytechnology.CreateCapacityTechnologyDto;
-import com.example.technology.infrastructure.entrypoints.dto.technology.CreateTechnologyDto;
-import com.example.technology.infrastructure.entrypoints.dto.technology.TechnologyDto;
 import com.example.technology.infrastructure.entrypoints.mapper.ICapacityTechnologyDtoMapper;
-import com.example.technology.infrastructure.entrypoints.mapper.ITechnologyDtoMapper;
-import com.example.technology.infrastructure.entrypoints.presentation.technology.handlers.CreateTechnologyHandler;
 import com.example.technology.infrastructure.entrypoints.validation.dto.IDtoValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
