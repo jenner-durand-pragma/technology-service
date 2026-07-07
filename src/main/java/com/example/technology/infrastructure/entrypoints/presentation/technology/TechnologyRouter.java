@@ -16,7 +16,7 @@ public class TechnologyRouter {
     @Bean("technologyRouterFunction")
     @RouterOperations({
             @RouterOperation(
-                    path = "/technology",
+                    path = "/api/technologies",
                     beanClass = CreateTechnologyHandler.class,
                     beanMethod = "handle",
                     method = RequestMethod.POST
@@ -28,7 +28,7 @@ public class TechnologyRouter {
         return RouterFunctions
                 .route()
                 .path(
-                        "/technology",
+                        "/technologies",
                         builder -> builder
                                 .POST("", createTechnologyHandler::handle)
                                 .build()
