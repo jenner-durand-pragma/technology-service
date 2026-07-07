@@ -14,6 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
 import reactor.test.StepVerifier;
 
+import java.util.List;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
 @DataR2dbcTest
 class TechnologyPersistenceAdapterTest {
 
@@ -64,5 +69,31 @@ class TechnologyPersistenceAdapterTest {
         StepVerifier.create(technologyPersistenceAdapter.existsByName(name))
                 .expectNext(value)
                 .verifyComplete();
+    }
+
+    @Test
+    @DisplayName("Should return the technologies with provided ids")
+    void shouldReturnTechnologiesWithProvidedIds_FindAllByIdIn() {
+        var technology2 = Technology.builder().name("Spring Security").description("Example Security").build();
+        var technology3 = Technology.builder().name(".NET").description("Example .NET").build();
+
+        var technologiesStream = List.of(technology, technology2, technology3);
+
+        var technologies = technologiesStream.stream().map(technologyEntityMapper::toEntity).toList();
+        technologyEntityRepository.saveAll(technologies).blockLast();
+
+        StepVerifier.create(
+                technologyPersistenceAdapter.findAllByIdIn(
+                        technologiesStream.stream().map(Technology::getId).toList()
+                ).collectList()
+        ).assertNext(result -> {
+                    assertThat(result)
+                            .hasSize(3)
+                            .containsExactlyInAnyOrder(
+                                    technology,
+                                    technology2,
+                                    technology3
+                            );
+        });
     }
 }
