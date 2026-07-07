@@ -32,6 +32,6 @@ public class TechnologyPersistenceAdapter implements ITechnologyPersistencePort 
 
     @Override
     public Flux<Technology> findAllByIdIn(List<Long> technologyIds) {
-        return Flux.empty();
+        return technologyEntityRepository.findAllByIdIn(technologyIds);
     }
 }
