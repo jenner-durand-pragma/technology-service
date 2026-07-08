@@ -14,11 +14,13 @@ public class RoutesConfig {
 
     @Bean
     public RouterFunction<ServerResponse> apiPrefixRouterWrapper(
-            @Qualifier("technologyRouterFunction") RouterFunction<ServerResponse> technologyRouterFunction
+            @Qualifier("technologyRouterFunction") RouterFunction<ServerResponse> technologyRouterFunction,
+            @Qualifier("capacityTechnologyRouterFunction") RouterFunction<ServerResponse> capacityTechnologyRouterFunction
     ) {
         return nest(
                 path("/api"),
                 technologyRouterFunction
+                        .and(capacityTechnologyRouterFunction)
         );
     }
 }
